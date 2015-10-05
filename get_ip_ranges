@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+ip_file = ARGV[0]
+
+ips = Hash.new(0)
+File.readlines(ip_file).each { |ip| ips[ip]++ }
+
+puts ips
