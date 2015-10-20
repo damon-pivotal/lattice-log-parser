@@ -1,0 +1,15 @@
+#!/bin/sh
+
+get_blocks() {
+	dig _cloud-netblocks${1}.googleusercontent.com TXT @8.8.8.8 nocomments +short | \
+    ruby -ne 'print $_.split(/ /).select{|l| l.start_with?("ip4")}.map{|l| l[4..-1]}.join("\n")+"\n"'
+}
+
+(
+get_blocks 1;
+get_blocks 2;
+get_blocks 3;
+get_blocks 4;
+get_blocks 5
+) | sort -u
+
