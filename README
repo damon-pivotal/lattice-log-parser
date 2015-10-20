@@ -1,0 +1,3 @@
+$ ./get-amazon-ip-ranges > amazon-ranges
+$ ./get-gce-ip-ranges > gce-ranges
+$ ./parselogs | ./map-ips
