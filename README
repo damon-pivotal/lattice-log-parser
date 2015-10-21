@@ -1,3 +1,5 @@
 $ ./get-amazon-ip-ranges > amazon-ranges
 $ ./get-gce-ip-ranges > gce-ranges
-$ ./parselogs | ./map-ips
+$ s3cmd get --skip-existing -vr s3://lattice-logs/logs/  # probably need to do this repeatedly
+$ grep -r 'lattice-v.*\.tgz' logs > lattice-tgz-downloads
+$ ./parselogs < ./lattice-tgz-downloads | ./map-ips > ips-by-source.csv

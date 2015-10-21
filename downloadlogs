@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+IPFILE=$(mktemp /tmp/lattice-log-parser-XXXXXXX)
+
+#echo "parsing logs to ${IPFILE}..."
+s3cmd get -r s3://lattice-logs/logs/ - | sed -E "/^s3:\\/\\//d;/^ [[:digit:]]+ of [[:digit:]]+/d;/^.*user\\/lattice-concourse/d;s/^.* (([[:digit:]]+\\.){3}[[:digit:]]+) .*$/\\1/g;/.+/w $IPFILE"
+#echo "ips written to $IPFILE"
+

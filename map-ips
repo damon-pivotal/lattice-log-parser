@@ -16,10 +16,10 @@ $stdin.readlines.each do |ip|
 	ip.chomp!
 	ipaddr = IPAddr.new(ip)
 	if find_in_ranges(ipaddr, amazon_ranges)
-		puts 'amazon,' + ip
+		puts 'amazon,' + ip + ','
 	elsif find_in_ranges(ipaddr, gce_ranges)
-		puts 'gce,' + ip
+		puts 'gce,' + ip + ','
 	else
-		puts 'unknown,' + ip
+		puts 'unknown,' + ip + ',' + `./get-ip-netname #{ip}`.strip
 	end
 end

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+whois $1 |grep -i ^OrgName:|tail -1|awk -F: '{print $2}'
